@@ -1,0 +1,6 @@
+C:\Work\Training\Bookish\Bookish.ConsoleApp\bin\Debug\Bookish.ConsoleApp.exe
+C:\Work\Training\Bookish\Bookish.ConsoleApp\bin\Debug\Bookish.ConsoleApp.pdb
+C:\Work\Training\Bookish\Bookish.ConsoleApp\obj\Debug\Bookish.ConsoleApp.csprojAssemblyReference.cache
+C:\Work\Training\Bookish\Bookish.ConsoleApp\obj\Debug\Bookish.ConsoleApp.csproj.CoreCompileInputs.cache
+C:\Work\Training\Bookish\Bookish.ConsoleApp\obj\Debug\Bookish.ConsoleApp.exe
+C:\Work\Training\Bookish\Bookish.ConsoleApp\obj\Debug\Bookish.ConsoleApp.pdb
