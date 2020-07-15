@@ -21,6 +21,8 @@ namespace Bookish.DataAccess
             Username = username;
             Pass = pass;
         }
+        
+        
 
         public bool BorrowCopy(Copy copy, CopyRepository copyRepo)
         {

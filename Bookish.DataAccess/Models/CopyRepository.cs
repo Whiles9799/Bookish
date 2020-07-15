@@ -16,6 +16,12 @@ namespace Bookish.DataAccess.Models
             return null;
         }
 
+        public IEnumerable<Copy> getByUser(User user)
+        {
+            var copies = _db.Query<Copy>("SELECT * FROM Copies WHERE UserID = @UserId", user);
+            return copies;
+        }
+
         public IEnumerable<Copy> getMultiple(int amount)
         {
             var copies = _db.Query<Copy>($"SELECT TOP {amount} * FROM Copies");
