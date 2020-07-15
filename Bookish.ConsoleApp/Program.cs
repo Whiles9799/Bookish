@@ -12,13 +12,16 @@ namespace Bookish.ConsoleApp
         public static void Main(string[] args)
         {
             var bookRepo = new BookRepository();
+            var copyRepo = new CopyRepository();
             var books = bookRepo.GetMultiple(10);
             foreach (var book in books)
             {
-                Console.WriteLine(book.Author);
+                foreach (var copyOfBook in copyRepo.getByBook(book))
+                {
+                    Console.WriteLine(copyOfBook.DueDate);
+                }
             }
             
-            var copyRepo = new CopyRepository();
             var newCopy = new Copy(2);
             copyRepo.Insert(newCopy);
             newCopy.DueDate = DateTime.Today.AddDays(5);

@@ -13,7 +13,8 @@ namespace Bookish.DataAccess.Models
 
         public IEnumerable<Copy> getByBook(Book book)
         {
-            return null;
+            var copies = _db.Query<Copy>("SELECT * FROM Copies WHERE BookID = @BookID", book);
+            return copies;
         }
 
         public IEnumerable<Copy> getMultiple(int amount)
@@ -37,8 +38,8 @@ namespace Bookish.DataAccess.Models
 
         public bool Delete(int copyID)
         {
-            string sqlString = $"DELETE FROM Copies WHERE CopyID = '{copyID}'";
-            if (_db.Execute(sqlString) > 0)
+            string sqlString = $"DELETE FROM Copies WHERE CopyID = @copyID'";
+            if (_db.Execute(sqlString, copyID) > 0)
             {
                 return true;
             }
