@@ -1,4 +1,8 @@
 ﻿using System;
+using System.Configuration;
+using System.Data;
+using System.Data.SqlClient;
+using Bookish.DataAccess.Models;
 
 namespace Bookish.ConsoleApp
 {
@@ -6,7 +10,11 @@ namespace Bookish.ConsoleApp
     {
         public static void Main(string[] args)
         {
-            Console.Write("yes");
+            var books = Book.GetMultiple(10);
+            foreach (var book in books)
+            {
+                Console.WriteLine(book.Author);
+            }
         }
     }
 }

@@ -1,0 +1,10 @@
+C:\Work\Training\Bookish\Bookish.DataAccess\bin\Debug\Bookish.DataAccess.dll.config
+C:\Work\Training\Bookish\Bookish.DataAccess\bin\Debug\Bookish.DataAccess.dll
+C:\Work\Training\Bookish\Bookish.DataAccess\bin\Debug\Bookish.DataAccess.pdb
+C:\Work\Training\Bookish\Bookish.DataAccess\bin\Debug\Dapper.dll
+C:\Work\Training\Bookish\Bookish.DataAccess\bin\Debug\Dapper.xml
+C:\Work\Training\Bookish\Bookish.DataAccess\obj\Debug\Bookish.DataAccess.csprojAssemblyReference.cache
+C:\Work\Training\Bookish\Bookish.DataAccess\obj\Debug\Bookish.DataAccess.csproj.CoreCompileInputs.cache
+C:\Work\Training\Bookish\Bookish.DataAccess\obj\Debug\Bookish.DataAccess.csproj.CopyComplete
+C:\Work\Training\Bookish\Bookish.DataAccess\obj\Debug\Bookish.DataAccess.dll
+C:\Work\Training\Bookish\Bookish.DataAccess\obj\Debug\Bookish.DataAccess.pdb
