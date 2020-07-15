@@ -16,7 +16,7 @@ namespace Bookish.DataAccess.Models
         
         public bool Insert(Copy copy)
         {
-            string sqlString = $"INSERT INTO Copies(BookID, UserID, DueDate) OUTPUT INSERTED.BookID VALUES ('{copy.BookID}', '{copy.UserID}', '{copy.DueDate}')";
+            string sqlString = $"INSERT INTO Copies(BookID, UserID, DueDate) OUTPUT INSERTED.CopyID VALUES ('{copy.BookID}', '{copy.UserID}', '{copy.DueDate}')";
             var id = _db.QuerySingle<int>(sqlString);
             if (id != 0)
             {
@@ -27,7 +27,13 @@ namespace Bookish.DataAccess.Models
 
         public bool Delete(int copyID)
         {
-            
+            string sqlString = $"DELETE FROM Copies WHERE CopyID = '{copyID}'";
+            if (_db.Execute(sqlString) > 0)
+            {
+                return true;
+            }
+
+            return false;
         }
 
         public bool Update(Copy copy)
