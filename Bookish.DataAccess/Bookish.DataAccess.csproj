@@ -44,7 +44,9 @@
     <ItemGroup>
         <Compile Include="Book.cs" />
         <Compile Include="Class1.cs" />
+        <Compile Include="Copy.cs" />
         <Compile Include="Models\BookRepository.cs" />
+        <Compile Include="Models\CopyRepository.cs" />
         <Compile Include="Models\Model.cs" />
         <Compile Include="Properties\AssemblyInfo.cs" />
     </ItemGroup>
