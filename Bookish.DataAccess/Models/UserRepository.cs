@@ -13,6 +13,14 @@ namespace Bookish.DataAccess.Models
         {
             return _db.Query<User>($"SELECT TOP {amount} * FROM Users");
         }
+
+        public User GetByCopy(Copy copy)
+        {
+            var sqlString =
+                "SELECT UserID, Username, Pass FROM Users JOIN Copies ON Copies.UserID == Users.UserID AND Copies.CopyID == @CopyID";
+            var user = _db.QuerySingle<User>(sqlString, copy);
+            return user;
+        }
         
         public bool Insert(User user)
         {
