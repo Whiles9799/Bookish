@@ -15,6 +15,9 @@ namespace Bookish.ConsoleApp
             {
                 Console.WriteLine(book.Author);
             }
+            
+            var bookToInsert = new Book("Pride and Prejudice", "Jane Austen???", "77");
+            Console.WriteLine(bookToInsert.Insert());
         }
     }
 }

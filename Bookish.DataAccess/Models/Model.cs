@@ -7,8 +7,7 @@ namespace Bookish.DataAccess.Models
     public interface Model
     {
         bool Insert();
-        bool Delete(int id);
+        bool Delete();
         
-        bool Update();
     }
 }
