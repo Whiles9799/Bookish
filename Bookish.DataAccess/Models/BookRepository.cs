@@ -33,25 +33,17 @@ namespace Bookish.DataAccess.Models
 
         public bool Insert(Book book)
         {
-            string sqlString = $"INSERT INTO Books(Title, Author, ISBN) OUTPUT INSERTED.BookID VALUES ('{book.Title}', '{book.Author}', '{book.ISBN}')";
+            var sqlString = $"INSERT INTO Books(Title, Author, ISBN) OUTPUT INSERTED.BookID VALUES ('{book.Title}', '{book.Author}', '{book.ISBN}')";
             var id = _db.QuerySingle<int>(sqlString);
-            if (id != 0)
-            {
-                book.BookID = id;
-                return true;
-            }
-            return false;
+            if (id == 0) return false;
+            book.BookID = id;
+            return true;
         }
 
         public bool Delete(int bookID)
         {
-            string sqlString = $"DELETE FROM Books WHERE BookID = '{bookID}'";
-            if (_db.Execute(sqlString) > 0)
-            {
-                return true;
-            }
-
-            return false;
+            var sqlString = $"DELETE FROM Books WHERE BookID = '{bookID}'";
+            return _db.Execute(sqlString) > 0;
         }
         
         

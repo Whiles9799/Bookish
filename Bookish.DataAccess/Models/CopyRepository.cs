@@ -25,41 +25,28 @@ namespace Bookish.DataAccess.Models
         public bool Insert(Copy copy)
         {
             var userID = copy.UserID == 0 ? "NULL" : copy.UserID.ToString();
-            string sqlString = $"INSERT INTO Copies(BookID, UserID, DueDate) OUTPUT INSERTED.CopyID VALUES ('{copy.BookID}', {userID}, '{copy.DueDate}')";
+            var sqlString = $"INSERT INTO Copies(BookID, UserID, DueDate) OUTPUT INSERTED.CopyID VALUES ('{copy.BookID}', {userID}, '{copy.DueDate}')";
             var id = _db.QuerySingle<int>(sqlString);
-            if (id != 0)
-            {
-                copy.CopyID = id;
-                return true;
-            }
-            return false;
+            if (id == 0) return false;
+            copy.CopyID = id;
+            return true;
         }
 
         public bool Delete(int copyID)
         {
-            string sqlString = $"DELETE FROM Copies WHERE CopyID = '{copyID}'";
-            if (_db.Execute(sqlString) > 0)
-            {
-                return true;
-            }
-
-            return false;
+            var sqlString = $"DELETE FROM Copies WHERE CopyID = '{copyID}'";
+            return _db.Execute(sqlString) > 0;
         }
 
         public bool Update(Copy copy)
         {
-            string sqlString =
+            var sqlString =
                 $"UPDATE [Copies] SET [BookID] = @BookID ,[UserID] = @UserID, [DueDate] = @DueDate WHERE CopyID = " +
                 copy.CopyID;
             
-            int rowsAffected = _db.Execute(sqlString, copy);
+            var rowsAffected = _db.Execute(sqlString, copy);
             
-            if (rowsAffected > 0)
-            {
-                return true;
-            }
-
-            return false;
+            return rowsAffected > 0;
         }
     }
 }
