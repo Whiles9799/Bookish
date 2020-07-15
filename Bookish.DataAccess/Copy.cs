@@ -4,12 +4,12 @@ namespace Bookish.DataAccess
 {
     public class Copy
     {
-        public string CopyID { get; set; }
-        public string BookID { get; set; }
-        public string UserID { get; set; }
+        public int CopyID { get; set; }
+        public int BookID { get; set; }
+        public int UserID { get; set; }
         public DateTime DueDate { get; set; }
 
-        public Copy(string copyId, string bookId, string userId, DateTime dueDate)
+        public Copy(int copyId, int bookId, int userId, DateTime dueDate)
         {
             CopyID = copyId;
             BookID = bookId;
@@ -17,11 +17,16 @@ namespace Bookish.DataAccess
             DueDate = dueDate;
         }
 
-        public Copy(string bookId, string userId, DateTime dueDate)
+        public Copy(int bookId, int userId, DateTime dueDate)
         {
             BookID = bookId;
             UserID = userId;
             DueDate = dueDate;
+        }
+
+        public Copy(int bookID)
+        {
+            BookID = bookID;
         }
         
         

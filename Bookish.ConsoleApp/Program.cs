@@ -18,8 +18,19 @@ namespace Bookish.ConsoleApp
                 Console.WriteLine(book.Author);
             }
             
-            var bookToInsert = new Book("Pride and Prejudice", "Jane Austen???", "77");
-            Console.WriteLine(bookRepo.Insert(bookToInsert));
+            var copyRepo = new CopyRepository();
+            var newCopy = new Copy(2);
+            copyRepo.Insert(newCopy);
+            newCopy.DueDate = DateTime.Today.AddDays(5);
+            newCopy.UserID = 1;
+            if (copyRepo.Update(newCopy))
+            {
+                Console.WriteLine("Updated");
+            }
+            foreach (var copy in copyRepo.getMultiple(10))
+            {
+                Console.WriteLine(copy.DueDate);
+            }
         }
     }
 }

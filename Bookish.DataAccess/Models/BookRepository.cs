@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
 using System.Security.Policy;
@@ -36,6 +37,7 @@ namespace Bookish.DataAccess.Models
             var id = _db.QuerySingle<int>(sqlString);
             if (id != 0)
             {
+                book.BookID = id;
                 return true;
             }
             return false;
