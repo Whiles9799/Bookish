@@ -13,7 +13,8 @@ namespace Bookish.DataAccess.Models
 
         public IEnumerable<Copy> getByBook(Book book)
         {
-            return null;
+            var copies = _db.Query<Copy>("SELECT * FROM Copies WHERE BookID = @BookID", book);
+            return copies;
         }
 
         public IEnumerable<Copy> getByUser(User user)
@@ -31,7 +32,8 @@ namespace Bookish.DataAccess.Models
         public bool Insert(Copy copy)
         {
             var userID = copy.UserID == 0 ? "NULL" : copy.UserID.ToString();
-            var sqlString = $"INSERT INTO Copies(BookID, UserID, DueDate) OUTPUT INSERTED.CopyID VALUES ('{copy.BookID}', {userID}, '{copy.DueDate}')";
+            var dueDate = copy.DueDate == DateTime.MinValue ? "NULL" : copy.DueDate.ToString();
+            var sqlString = $"INSERT INTO Copies(BookID, UserID, DueDate) OUTPUT INSERTED.CopyID VALUES ('{copy.BookID}', {userID}, '{dueDate}')";
             var id = _db.QuerySingle<int>(sqlString);
             if (id == 0) return false;
             copy.CopyID = id;

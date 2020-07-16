@@ -1,4 +1,7 @@
-﻿namespace Bookish.DataAccess
+﻿using System.Linq;
+using Bookish.DataAccess.Models;
+
+namespace Bookish.DataAccess
 {
     public class Book
     {
@@ -21,6 +24,17 @@
             Author = author;
             ISBN = isbn;
         }
-        
+
+        public bool AddCopies(int amount, CopyRepository copyRepo)
+        {
+            bool inserted = true;
+            foreach (var i in Enumerable.Range(0, amount))
+            {
+                var copy = new Copy(BookID);
+                inserted &= copyRepo.Insert(copy);
+            }
+
+            return inserted;
+        }
     }
 }
