@@ -1,0 +1,51 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Configuration;
+using System.Data;
+using System.Data.SqlClient;
+using System.Security.Policy;
+using Dapper;
+
+namespace Bookish.DataAccess.Models
+{
+
+    public class BookRepository
+    {
+        private static IDbConnection _db = new SqlConnection("Server=localhost;Database=Bookish;Trusted_Connection=True;");
+
+        public IEnumerable<Book> GetMultiple(int amount)
+        {
+            var books = _db.Query<Book>($"SELECT TOP {amount} * FROM Books");
+            return books;
+        }
+
+        public IEnumerable<Book> GetByAuthor(string author)
+        {
+            var books = _db.Query<Book>($"SELECT * FROM Books WHERE Author LIKE '{author}%'");
+            return books;
+        }
+        
+        public IEnumerable<Book> GetByTitle(string title)
+        {
+            var books = _db.Query<Book>($"SELECT * FROM Books WHERE Title LIKE '{title}%'");
+            return books;
+        }
+
+        public bool Insert(Book book)
+        {
+            var sqlString = $"INSERT INTO Books(Title, Author, ISBN) OUTPUT INSERTED.BookID VALUES ('{book.Title}', '{book.Author}', '{book.ISBN}')";
+            var id = _db.QuerySingle<int>(sqlString);
+            if (id == 0) return false;
+            book.BookID = id;
+            return true;
+        }
+
+        public bool Delete(int bookID)
+        {
+            var sqlString = $"DELETE FROM Books WHERE BookID = '{bookID}'";
+            return _db.Execute(sqlString) > 0;
+        }
+        
+        
+    }
+}

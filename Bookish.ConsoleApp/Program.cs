@@ -2,6 +2,7 @@
 using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
+using Bookish.DataAccess;
 using Bookish.DataAccess.Models;
 
 namespace Bookish.ConsoleApp
@@ -10,10 +11,12 @@ namespace Bookish.ConsoleApp
     {
         public static void Main(string[] args)
         {
-            var books = Book.GetMultiple(10);
-            foreach (var book in books)
+            var userRepo = new UserRepository();
+            var copyRepo = new CopyRepository();
+            foreach (var copy in copyRepo.getMultiple(10))
             {
-                Console.WriteLine(book.Author);
+                var user = userRepo.GetByCopy(copy);
+                if (user != null) Console.WriteLine(user.Username);
             }
         }
     }
