@@ -15,7 +15,8 @@ namespace Bookish.ConsoleApp
             var copyRepo = new CopyRepository();
             foreach (var copy in copyRepo.getMultiple(10))
             {
-                Console.WriteLine(userRepo.GetByCopy(copy).Username);
+                var user = userRepo.GetByCopy(copy);
+                if (user != null) Console.WriteLine(user.Username);
             }
         }
     }

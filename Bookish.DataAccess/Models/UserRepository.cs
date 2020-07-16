@@ -17,8 +17,8 @@ namespace Bookish.DataAccess.Models
         public User GetByCopy(Copy copy)
         {
             var sqlString =
-                "SELECT UserID, Username, Pass FROM Users JOIN Copies ON Copies.UserID == Users.UserID AND Copies.CopyID == @CopyID";
-            var user = _db.QuerySingle<User>(sqlString, copy);
+                "SELECT Users.UserID, Username, Pass FROM Users JOIN Copies ON Copies.UserID = Users.UserID WHERE Copies.CopyID = @CopyID";
+            var user = _db.QuerySingleOrDefault<User>(sqlString, copy);
             return user;
         }
         
